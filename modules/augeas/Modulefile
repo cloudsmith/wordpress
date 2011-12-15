@@ -1,0 +1,9 @@
+name 'cloudsmith-augeas'
+version '0.1.0'
+
+author 'mruzicka'
+license ''
+project_page ''
+source ''
+summary 'Minimalistic Augaes for RedHat like OSs'
+description ''

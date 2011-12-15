@@ -1,0 +1,9 @@
+name 'cloudsmith-php5'
+version '0.1.0'
+
+author 'mruzicka'
+license ''
+project_page ''
+source ''
+summary 'Minimalistic php for RedHat like OSs'
+description ''

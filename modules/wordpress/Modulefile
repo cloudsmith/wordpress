@@ -1,0 +1,9 @@
+name 'cloudsmith-wordpress'
+version '0.1.0'
+
+author 'mruzicka'
+license ''
+project_page ''
+source ''
+summary 'Wordpress blog'
+description ''

@@ -1,0 +1,45 @@
+#
+# Wordpress configuration
+#
+Alias /<%= instance_alias %>/ "<%= instance_root %>/"
+Alias /<%= instance_alias %> "<%= instance_root %>"
+
+<Directory "<%= instance_root %>">
+    #
+    # Possible values for the Options directive are "None", "All",
+    # or any combination of:
+    #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+    #
+    # Note that "MultiViews" must be named *explicitly* --- "Options All"
+    # doesn't give it to you.
+    #
+    # The Options directive is both complicated and important.  Please see
+    # http://httpd.apache.org/docs/2.2/mod/core.html#options
+    # for more information.
+    #
+    Options FollowSymLinks Indexes
+
+    #
+    # AllowOverride controls what directives may be placed in .htaccess files.
+    # It can be "All", "None", or any combination of the keywords:
+    #   Options FileInfo AuthConfig Limit
+    #
+    AllowOverride None
+
+    #
+    # Cause the PHP interpreter to handle files with a .php extension.
+    #
+    AddHandler php5-script .php
+    AddType text/html .php
+
+    #
+    # Add index.php to the list of files that will be served as directory
+    # indexes.
+    #
+    DirectoryIndex index.php
+
+    #
+    # Controls who can get stuff from this server.
+    #
+    Order deny,allow
+</Directory>
