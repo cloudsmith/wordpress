@@ -9,13 +9,14 @@ define wordpress::instance($dbname = 'wordpress', $dbuser = 'wpdbuser', $dbpass 
                 owner => root,
                 group => root,
 		mode => 0755,
+		require => Package['httpd'],
 	}
 
 	exec { "wp_download-${instance_alias}":
 		command => "curl -sS \"http://wordpress.org/latest.tar.gz\" | tar -C \"${instance_root}\" --strip-components=1 --no-same-owner -xzf -",
 		path => ['/usr/local/bin', '/bin', '/usr/bin'],
 		creates => "${instance_root}/index.php",
-		require => [Package['httpd', 'curl', 'tar'], File["${instance_root}"]],
+		require => [Package['curl', 'tar'], File["${instance_root}"]],
 	}
 
 	mysql::db { "$dbname":
