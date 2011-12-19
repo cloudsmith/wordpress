@@ -2,7 +2,8 @@ class wordpress::default {
 	wordpress::instance { 'blog':
 	}
 
-	wordpress::instance { 'blog2':
-		dbname => 'wordpress2',
-	}
+# If a second blog instance is wanted
+#	wordpress::instance { 'blog2':
+#		dbname => 'wordpress2',
+#	}
 }
