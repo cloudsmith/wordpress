@@ -1,11 +1,22 @@
 class apache2 {
-	package { 'httpd':
-		ensure => present,
+	$apache = $::operatingsystem ? {
+		Ubuntu => 'apache2',
+		CentOS => 'httpd',
+		Debian => 'apache2',
+		default => 'httpd',
 	}
 
-	service { 'httpd':
-		enable => true,
+	package { 'apache2':
+		name => "${apache}",
+		ensure => latest,
+	}
+
+	service { 'apache2-service':
+		name => "${apache}",
 		ensure => running,
-		require => Package['httpd'],
+		enable => true,
+		hasrestart => true,
+		hasstatus => true,
+		require => Package['apache2'],
 	}
 }

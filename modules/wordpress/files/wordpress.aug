@@ -6,7 +6,7 @@ module Wordpress
                = autoload xfm
 
 (************************************************************************
- *                           USEFUL PRIMITIVES                          * 
+ *                           USEFUL PRIMITIVES                          *
  ************************************************************************)
 
 let newline    = /\r?\n/
@@ -35,7 +35,7 @@ let comment_c  = del_opt_ws . Util.del_str "/*"
 let comment_cplusplus
                = del_opt_ws_sp . Util.del_str "//"
                  . [ label "comment-c++" . store ((/[^\n\r]/ | /(\r\r)*\r[^\n]/)*) ]
-                 . del newline "\n" 
+                 . del newline "\n"
 
 let comment_shell
                = del_opt_ws_sp . Util.del_str "#"

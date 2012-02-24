@@ -6,10 +6,10 @@ define wordpress::instance($dbname = 'wordpress', $dbuser = 'wpdbuser', $dbpass 
 
 	file { "${instance_root}":
 		ensure => directory,
-                owner => root,
-                group => root,
+		owner => root,
+		group => root,
 		mode => 0755,
-		require => Package['httpd'],
+		require => Package['apache2'],
 	}
 
 	exec { "wp_download-${instance_alias}":
@@ -47,16 +47,11 @@ define wordpress::instance($dbname = 'wordpress', $dbuser = 'wpdbuser', $dbpass 
 		value => "$dbpass",
 	}
 
-        file { "/etc/httpd/conf.d/wordpress-${instance_alias}.conf":
-                ensure => present,
-                content => template('wordpress/wordpress.conf.erb'),
-                owner => root,
-                group => root,
-		mode => 0644,
-                require => [
+	apache2::config_include { "wordpress-${instance_alias}":
+		content => template('wordpress/wordpress.conf.erb'),
+		require => [
 			Mysql::Db["$dbname"],
 			Config_param["wp_param-DB_NAME-${instance_alias}", "wp_param-DB_USER-${instance_alias}", "wp_param-DB_PASSWORD-${instance_alias}"],
 		],
-                notify => Service['httpd'],
-        }
+	}
 }
