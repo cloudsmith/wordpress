@@ -11,5 +11,7 @@ class php5::apache_module {
 	package { 'php5-apache_module':
 		name => "${php}",
 		ensure => latest,
+		subscribe => Package['php5-common'],
+		notify => Service['apache2-service'],
 	}
 }

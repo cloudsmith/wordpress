@@ -9,5 +9,6 @@ class php5::mysql {
 	package { 'php5-mysql':
 		name => "${php_mysql}",
 		ensure => latest,
+		notify => Package['php5-common'],
 	}
 }
