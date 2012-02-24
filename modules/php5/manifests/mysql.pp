@@ -1,4 +1,6 @@
 class php5::mysql {
+	include php5::common
+
 	$php_mysql = $::operatingsystem ? {
 		Ubuntu => 'php5-mysql',
 		CentOS => 'php-mysql',

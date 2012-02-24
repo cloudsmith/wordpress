@@ -1,4 +1,5 @@
 class php5::apache_module {
+	include php5::common
 	include apache2
 
 	$php = $::operatingsystem ? {
