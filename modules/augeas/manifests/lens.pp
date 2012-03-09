@@ -1,10 +1,12 @@
 define augeas::lens($source) {
-	file { "/usr/share/augeas/lenses/${name}.aug":
+	include augeas
+
+	file { "${augeas::lens_dir}/${name}.aug":
 		ensure => present,
 		source => "${source}",
 		owner => root,
 		group => root,
 		mode => 0644,
-		require => Package['augeas-libs'],
+		require => File["${augeas::lens_dir}"],
 	}
 }

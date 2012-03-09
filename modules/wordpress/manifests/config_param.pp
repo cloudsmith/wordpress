@@ -1,4 +1,5 @@
 define wordpress::config_param($wp_root, $key, $value) {
+	include augeas
 	include internal::lens
 
 	# first try to see if there is a double quoted param of the specified name
@@ -6,6 +7,7 @@ define wordpress::config_param($wp_root, $key, $value) {
 	augeas { "wp_replace_double_quoted_config_param-${wp_root}-${key}":
 		incl => "${wp_root}/wp-config.php",
 		lens => 'Wordpress.lns',
+		load_path => "${augeas::lens_dir}"
 		context => "/files${wp_root}/wp-config.php",
 		onlyif => "match \"\\\"${key}\\\"\" != []",
 		changes => [
@@ -20,6 +22,7 @@ define wordpress::config_param($wp_root, $key, $value) {
 	augeas { "wp_insert_new_config_param-${wp_root}-${key}":
 		incl => "${wp_root}/wp-config.php",
 		lens => 'Wordpress.lns',
+		load_path => "${augeas::lens_dir}"
 		context => "/files${wp_root}/wp-config.php",
 		onlyif => "match \"'${key}'\" == []",
 		changes => [
@@ -33,6 +36,7 @@ define wordpress::config_param($wp_root, $key, $value) {
 	augeas { "wp_set_config_param-${wp_root}-${key}":
 		incl => "${wp_root}/wp-config.php",
 		lens => 'Wordpress.lns',
+		load_path => "${augeas::lens_dir}"
 		context => "/files${wp_root}/wp-config.php",
 		changes => [
 			"set \"'${key}'\" \"'${value}'\"",
