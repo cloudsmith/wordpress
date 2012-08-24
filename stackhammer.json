@@ -1,0 +1,13 @@
+{
+  "metaVersion": "1.1.5",
+  "puppetVersion": "PUPPET27",
+  "environments": [
+    {
+      "siteLocation": "manifests",
+      "moduleLocations": [
+        "modules"
+      ],
+      "name": "production"
+    }
+  ]
+}
