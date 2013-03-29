@@ -29,7 +29,7 @@ Alias /<%= instance_alias %> "<%= instance_root %>"
     #
     # Cause the specified handler to handle files with a .php extension.
     #
-    AddHandler php5-script .php
+    AddHandler <%= scope.lookupvar('::php5::apache_module::php_handler') %> .php
     AddType text/html .php
 
     #
