@@ -1,8 +1,8 @@
 name 'cloudsmith-apache2'
 version '0.1.0'
 
-author 'mruzicka'
-license ''
+author 'Cloudsmith Inc.'
+license 'Apache License 2.0'
 project_page ''
 source ''
 summary 'Minimalistic Apache httpd'
